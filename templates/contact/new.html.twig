@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Contact{% endblock %}
+
+{% block body %}
+    <h4 class="ui dividing header" style="margin: 4rem 32rem 0">
+        Add Contact
+        <div style="float:right;">
+            <a href="{{ path('contact_index') }}" style="margin-right:1em">View All</a>
+        </div>
+    </h4>
+
+    {{ include('contact/_form.html.twig') }}
+{% endblock %}

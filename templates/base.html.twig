@@ -3,10 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet"/>
         {% block stylesheets %}{% endblock %}
+        <style type="text/css">
+        a:hover{
+            text-decoration:underline
+        }
+        </style>
     </head>
     <body>
         {% block body %}{% endblock %}
+        <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ asset('js/semantic.min.js') }}"></script>
+        <script src="{{ asset('js/addressbook.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

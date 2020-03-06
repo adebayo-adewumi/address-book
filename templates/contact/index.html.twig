@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block body %}
+    <div style="margin: 3em 2em 2em">
+        <h1 class="ui header">
+            List of Contacts
+            <a href="{{ path('contact_new') }}" class="ui primary button" style="float:right">Create new</a>
+        </h1>
+
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Street</th>
+                    <th>Zip</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                    <th>Birthday</th>
+                    <th>Email</th>
+                    <th>Picture</th>
+                    <th>Day</th>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.firstname }}</td>
+                    <td>{{ contact.lastname }}</td>
+                    <td>{{ contact.street }}</td>
+                    <td>{{ contact.zip }}</td>
+                    <td>{{ contact.city }}</td>
+                    <td>{{ contact.country }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.birthday }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.picture }}</td>
+                    <td>{{ contact.day }}</td>
+                    <td>{{ contact.month }}</td>
+                    <td>{{ contact.year }}</td>
+                    <td>
+                        <a href="{{ path('contact_show', {'id': contact.id}) }}" class="ui button">show</a>
+                        <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="ui button">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="15">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
