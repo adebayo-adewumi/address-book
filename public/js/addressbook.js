@@ -1,6 +1,7 @@
 $(".ui.dropdown").dropdown();
+let _url = window.location.href;
 
-function addContact(e){
+function saveContact(e){
     $(e).addClass("disabled");
     $(e).html("Please wait...");
 
@@ -10,7 +11,7 @@ function addContact(e){
     let birthday = day+" "+month+" "+year;
 
     let contact = $.ajax({
-        url:"/contact/new",
+        url:_url,
         type:"POST",
         data: $(".add-contact-form").serialize()+"&birthday="+birthday+"&method=POST",
         dataType:"json",
@@ -21,7 +22,7 @@ function addContact(e){
         $(e).html("Save");
 
         if(response.status == "success"){
-            $(".responseMsg").html('<div class="ui green message">Contact added successfully!</div>');
+            $(".responseMsg").html('<div class="ui green message">Contact saved successfully!</div>');
         }
         else{
             $(".responseMsg").html('<div class="ui red message">Error occured</div>');

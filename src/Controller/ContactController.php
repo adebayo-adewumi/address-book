@@ -79,10 +79,25 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if ($request->get('method') == 'POST') {
+            $entityManager = $this->getDoctrine()->getManager();
 
-            return $this->redirectToRoute('contact_index');
+            $contact->setFirstname($request->get('firstname'));
+            $contact->setLastname($request->get('lastname'));
+            $contact->setStreet($request->get('street'));
+            $contact->setZip((int)$request->get('zip'));
+            $contact->setCity($request->get('city'));
+            $contact->setCountry($request->get('country'));
+            $contact->setPhone((int)$request->get('phone'));
+            $contact->setEmail($request->get('email'));
+            $contact->setBirthday($request->get('birthday'));
+            $contact->setDay((int)$request->get('day'));
+            $contact->setMonth($request->get('month'));
+            $contact->setYear((int)$request->get('year'));
+
+            $entityManager->flush();
+
+            return $this->json(['contact' => $contact,'status'=>'success']);
         }
 
         return $this->render('contact/edit.html.twig', [
